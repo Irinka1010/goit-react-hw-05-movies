@@ -13,6 +13,12 @@ export const getMovieId = async id => {
   return data;
 };
 export const getActors = async id => {
-  const { data } = await axios.get(`movie/${id}/credits?api_key=${KEY}`);
-  return data.cast;
+  const response = await axios.get(`movie/${id}/credits?api_key=${KEY}`);
+  return response.data.cast;
+};
+export const getReviews = async id => {
+  const response = await axios.get(
+    `movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`
+  );
+  return response.data.results;
 };

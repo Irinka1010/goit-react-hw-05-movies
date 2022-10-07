@@ -8,6 +8,7 @@ export default function Cast() {
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
   const { moviesId } = useParams();
+  console.log(moviesId);
 
   useEffect(() => {
     const fetchActors = async () => {
