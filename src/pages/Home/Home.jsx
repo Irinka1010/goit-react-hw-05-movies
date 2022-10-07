@@ -5,19 +5,19 @@ import { fetchTrendingMovie } from 'Services/API';
 
 export default function Home() {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getTrendingMovie = async () => {
-      setLoading(true);
+      // setLoading(true);
       try {
         const data = await fetchTrendingMovie();
         setItems(data);
       } catch (error) {
-        setError(error);
+        // setError(error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
     getTrendingMovie();

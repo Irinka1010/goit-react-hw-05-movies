@@ -5,8 +5,8 @@ import MovieElement from 'components/MovieElement/MovieElement';
 
 export default function MovieDetails() {
   const [movies, setMovies] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
 
   const { moviesId } = useParams();
   const navigate = useNavigate();
@@ -14,14 +14,14 @@ export default function MovieDetails() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        setLoading(true);
-        setError(null);
+        // setLoading(true);
+        // setError(null);
         const data = await getMovieId(moviesId);
         setMovies(data);
       } catch (error) {
-        setError(error);
+        // setError(error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
     fetchMovie();
