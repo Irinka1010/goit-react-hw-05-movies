@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
 import { getMovieId } from 'Services/API';
-import MovieElement from 'components/MovieElement/MovieElement';
+import MovieDetailsElement from 'components/MovieDetailsElement/MovieDetailsElement';
 
 export default function MovieDetails() {
   const [movies, setMovies] = useState(null);
@@ -32,7 +32,7 @@ export default function MovieDetails() {
     <div>
       <div>
         <button onClick={goBack}>Go back</button>
-        {movies && <MovieElement movies={movies} />}
+        {movies && <MovieDetailsElement movies={movies} />}
       </div>
       <div>
         <h3>Additional information</h3>

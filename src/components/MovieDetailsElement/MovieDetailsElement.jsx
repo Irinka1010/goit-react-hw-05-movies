@@ -1,5 +1,5 @@
 const imgeURL = 'https://image.tmdb.org/t/p/w500/';
-export default function MovieElement({ movies }) {
+export default function MovieDetailsElement({ movies }) {
   const { title, overview, genres, poster_path, vote_count } = movies;
   const genre = genres.map(({ id, name }) => {
     return <li key={id}>{name}</li>;
