@@ -1,13 +1,13 @@
-import { StyledLink } from './StyledLink';
+import { StyledLink, Header, Novigation } from './StyledLink';
 export default function Nav() {
   return (
-    <header>
-      <nav>
+    <Header>
+      <Novigation>
         <StyledLink to="/" end>
           Home
         </StyledLink>
         <StyledLink to="/movies">Movies</StyledLink>
-      </nav>
-    </header>
+      </Novigation>
+    </Header>
   );
 }
