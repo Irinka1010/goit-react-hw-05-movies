@@ -8,7 +8,7 @@ export default function Reviews() {
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
   const { moviesId } = useParams();
-  console.log(moviesId);
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -23,5 +23,13 @@ export default function Reviews() {
     fetchReviews();
   }, [moviesId]);
 
-  return <div>{reviews && <ListReviews reviews={reviews} />}</div>;
+  return (
+    <ul>
+      {reviews === [] ? (
+        <ListReviews reviews={reviews} />
+      ) : (
+        <p>We don't have reviews of this movie</p>
+      )}
+    </ul>
+  );
 }

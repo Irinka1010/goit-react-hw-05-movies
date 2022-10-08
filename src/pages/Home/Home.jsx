@@ -2,7 +2,7 @@ import TitleHome from 'components/TitleHome/TitleHome';
 import ListFilms from 'components/ListFilms/ListFilms';
 import { useState, useEffect } from 'react';
 import { fetchTrendingMovie } from 'Services/API';
-
+import { Section } from 'pages/Home/StyledHome';
 export default function Home() {
   const [items, setItems] = useState([]);
   // const [error, setError] = useState(null);
@@ -24,9 +24,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <Section>
       <TitleHome title={'Trending today'} />
       <ListFilms items={items} />
-    </div>
+    </Section>
   );
 }

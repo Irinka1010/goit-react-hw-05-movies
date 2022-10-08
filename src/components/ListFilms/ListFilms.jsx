@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
+import { List } from './StyledListFimms';
 
 export default function ListFilms({ items }) {
-  const elements = items.map(({ id, title }) => (
+  const urlImg = `https://image.tmdb.org/t/p/w500/`;
+  const elements = items.map(({ id, title, poster_path }) => (
     <li key={id}>
-      <Link to={`/movies/${id}`}>{title} </Link>
+      <Link to={`/movies/${id}`}>
+        <img src={`${urlImg}${poster_path}`} alt={title} />
+      </Link>
     </li>
   ));
-  return <ul>{elements}</ul>;
+  return <List>{elements}</List>;
 }

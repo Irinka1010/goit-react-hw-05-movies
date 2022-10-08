@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
+
 import { getMovieId } from 'Services/API';
+
 import MovieDetailsElement from 'components/MovieDetailsElement/MovieDetailsElement';
 
 export default function MovieDetails() {
@@ -28,11 +30,17 @@ export default function MovieDetails() {
   }, [moviesId]);
   const goBack = () => navigate(-1);
 
+  const movieScore = score => {
+    return Math.floor(score * 10) + '%';
+  };
+
   return (
     <div>
       <div>
         <button onClick={goBack}>Go back</button>
-        {movies && <MovieDetailsElement movies={movies} />}
+        {movies && (
+          <MovieDetailsElement movies={movies} movieScore={movieScore} />
+        )}
       </div>
       <div>
         <h3>Additional information</h3>

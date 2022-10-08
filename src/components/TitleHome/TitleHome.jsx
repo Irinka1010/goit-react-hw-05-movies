@@ -1,7 +1,8 @@
+import { Title } from './StyledTitleHome';
 export default function TitleHome({ title }) {
   return (
-    <div>
-      <h1>{title}</h1>
-    </div>
+    <>
+      <Title>{title}</Title>
+    </>
   );
 }
