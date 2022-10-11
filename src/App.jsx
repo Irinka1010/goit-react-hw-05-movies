@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from 'pages/Home/Home';
 import Movies from 'pages/Movies/Movies';
 import MovieDetails from 'pages/MovieDetails/MovieDetails';
-import Reviews from 'pages/MovieDetails/Reviews/Reviews';
-import Cast from 'pages/MovieDetails/Cast/Cast';
 import Nav from 'components/Nav/Nav';
+import Loader from 'components/Loader/Loader';
+const CastPage = lazy(() => import('pages/MovieDetails/Cast/Cast'));
+const ReviewsPage = lazy(() => import('pages/MovieDetails/Reviews/Reviews'));
 export const App = () => {
   return (
     <div>
@@ -15,8 +17,22 @@ export const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:moviesId" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+          <Route
+            path="cast"
+            element={
+              <Suspense fallback={<Loader />}>
+                <CastPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="reviews"
+            element={
+              <Suspense fallback={<Loader />}>
+                <ReviewsPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
       <ToastContainer />
