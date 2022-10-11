@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, NavLink, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Outlet,
+  useLocation,
+  Link,
+} from 'react-router-dom';
 
 import { getMovieId } from 'Services/API';
 
@@ -12,7 +18,9 @@ export default function MovieDetails() {
 
   const { moviesId } = useParams();
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const from = location.state?.from || '/movies';
+  console.log(from);
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -28,12 +36,17 @@ export default function MovieDetails() {
     };
     fetchMovie();
   }, [moviesId]);
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(from);
 
   const movieScore = score => {
     return Math.floor(score * 10) + '%';
   };
-
+  const isCast = location.pathname.includes('cast');
+  const castLink = isCast ? `/movies/${moviesId}` : `/movies/${moviesId}/cast`;
+  const isReviews = location.pathname.includes('reviews');
+  const reviewsLink = isReviews
+    ? `/movies/${moviesId}`
+    : `/movies/${moviesId}/reviews`;
   return (
     <div>
       <div>
@@ -44,14 +57,14 @@ export default function MovieDetails() {
       </div>
       <div>
         <h3>Additional information</h3>
-        <ul>
-          <li>
-            <NavLink to={'cast'}> Cast</NavLink>
-          </li>
-          <li>
-            <NavLink to={'reviews'}> Reviews</NavLink>
-          </li>
-        </ul>
+        <div>
+          <Link state={{ from }} to={castLink}>
+            Cast
+          </Link>
+          <Link state={{ from }} to={reviewsLink}>
+            Reviews
+          </Link>
+        </div>
         <Outlet></Outlet>
       </div>
     </div>

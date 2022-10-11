@@ -1,6 +1,7 @@
 import SearchBox from 'components/SearchBox/SearchBox';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { searchMovieQuery } from 'Services/API';
 import ListMovies from 'components/ListMovies/ListMovies';
 export default function Movies() {
@@ -12,10 +13,16 @@ export default function Movies() {
     setSearchParams(velue !== '' ? { query: velue } : {});
   };
   useEffect(() => {
+    if (!query) {
+      return;
+    }
     const fetchMovies = async () => {
       try {
         const data = await searchMovieQuery(query);
         setMovies(data);
+        if (data.length === 0) {
+          toast.info('Sorry, request not found, try something else');
+        }
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -24,7 +31,6 @@ export default function Movies() {
     fetchMovies();
   }, [query]);
 
-  console.log(movies);
   return (
     <main>
       <SearchBox onChange={changeFilret} />
