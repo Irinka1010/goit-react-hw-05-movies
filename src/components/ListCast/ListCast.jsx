@@ -2,7 +2,7 @@ export default function ListCast({ castMovie }) {
   return (
     <>
       {castMovie.map(({ name, character, profile_path, id }) => (
-        <li key={id}>
+        <li className="Item" key={id}>
           <img
             src={
               profile_path

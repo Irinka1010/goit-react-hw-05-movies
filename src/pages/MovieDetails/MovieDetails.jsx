@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Сard, Button } from 'pages/MovieDetails/StyledMovieDetails';
 import {
   useParams,
   useNavigate,
@@ -48,25 +49,26 @@ export default function MovieDetails() {
     ? `/movies/${moviesId}`
     : `/movies/${moviesId}/reviews`;
   return (
-    <div>
-      <div>
-        <button onClick={goBack}>Go back</button>
+    <>
+      <Button onClick={goBack}>Go back</Button>
+      <Сard>
         {movies && (
           <MovieDetailsElement movies={movies} movieScore={movieScore} />
         )}
-      </div>
-      <div>
-        <h3>Additional information</h3>
+
         <div>
-          <Link state={{ from }} to={castLink}>
+          <h3>Additional information</h3>
+
+          <Link className="Link" state={{ from }} to={castLink}>
             Cast
           </Link>
-          <Link state={{ from }} to={reviewsLink}>
+          <Link className="Link" state={{ from }} to={reviewsLink}>
             Reviews
           </Link>
+
+          <Outlet></Outlet>
         </div>
-        <Outlet></Outlet>
-      </div>
-    </div>
+      </Сard>
+    </>
   );
 }

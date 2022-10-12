@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getActors } from 'Services/API';
 import ListCast from 'components/ListCast/ListCast';
+import { CastList } from 'pages/MovieDetails/Cast/StyledCast';
 
 export default function Cast() {
   const [castMovie, setCastMovie] = useState(null);
@@ -26,5 +27,5 @@ export default function Cast() {
     fetchActors();
   }, [moviesId]);
 
-  return <ul>{castMovie && <ListCast castMovie={castMovie} />}</ul>;
+  return <CastList>{castMovie && <ListCast castMovie={castMovie} />}</CastList>;
 }

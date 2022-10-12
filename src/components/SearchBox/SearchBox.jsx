@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { IoSearchSharp } from 'react-icons/io5';
+import { StyledForm } from 'components/SearchBox/StyledForm';
 export default function SearchBox({ onChange }) {
   const [search, setSearch] = useState('');
 
@@ -18,16 +20,22 @@ export default function SearchBox({ onChange }) {
     console.log(search);
   };
   return (
-    <form onSubmit={hendleSubmit}>
-      <input
-        placeholder="Search movies and videos"
-        type="text"
-        // autocomplete="off"
-        // autofocus
-        name="query"
-        onChange={hendleQueryChange}
-      />
-      <button type="submit"></button>
-    </form>
+    <StyledForm>
+      <form className="Form" onSubmit={hendleSubmit}>
+        <button className="Button" type="submit">
+          <IoSearchSharp />
+        </button>
+
+        <input
+          className="Input"
+          placeholder="Search movies and videos"
+          type="text"
+          autocomplete="off"
+          autofocus
+          name="query"
+          onChange={hendleQueryChange}
+        />
+      </form>
+    </StyledForm>
   );
 }

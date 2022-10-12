@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { searchMovieQuery } from 'Services/API';
 import ListMovies from 'components/ListMovies/ListMovies';
+
 export default function Movies() {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();

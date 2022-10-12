@@ -8,7 +8,7 @@ export default function ListFilms({ items }) {
   const elements = items.map(({ id, title, poster_path }) => (
     <li key={id}>
       <Link state={{ from: location }} to={`/movies/${id}`}>
-        <img src={`${urlImg}${poster_path}`} alt={title} />
+        <img className="Img" src={`${urlImg}${poster_path}`} alt={title} />
       </Link>
     </li>
   ));
