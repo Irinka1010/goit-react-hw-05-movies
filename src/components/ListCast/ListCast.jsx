@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function ListCast({ castMovie }) {
   return (
     <>
@@ -19,3 +20,13 @@ export default function ListCast({ castMovie }) {
     </>
   );
 }
+ListCast.propTypes = {
+  castMovie: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      profile_path: PropTypes.string,
+    })
+  ),
+};

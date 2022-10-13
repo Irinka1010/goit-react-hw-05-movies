@@ -35,6 +35,7 @@ export const App = () => {
               }
             />
           </Route>
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
       <ToastContainer />

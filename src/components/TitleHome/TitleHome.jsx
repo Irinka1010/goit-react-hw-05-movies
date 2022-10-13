@@ -1,4 +1,5 @@
 import { Title } from './StyledTitleHome';
+import PropTypes from 'prop-types';
 export default function TitleHome({ title }) {
   return (
     <>
@@ -6,3 +7,6 @@ export default function TitleHome({ title }) {
     </>
   );
 }
+TitleHome.propTypes = {
+  title: PropTypes.string.isRequired,
+};

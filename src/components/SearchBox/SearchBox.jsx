@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { IoSearchSharp } from 'react-icons/io5';
 import { StyledForm } from 'components/SearchBox/StyledForm';
+import PropTypes from 'prop-types';
 export default function SearchBox({ onChange }) {
   const [search, setSearch] = useState('');
 
@@ -17,7 +18,6 @@ export default function SearchBox({ onChange }) {
     }
     onChange(search);
     setSearch('');
-    console.log(search);
   };
   return (
     <StyledForm>
@@ -39,3 +39,6 @@ export default function SearchBox({ onChange }) {
     </StyledForm>
   );
 }
+SearchBox.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

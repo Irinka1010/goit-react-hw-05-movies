@@ -6,26 +6,25 @@ import { CastList } from 'pages/MovieDetails/Cast/StyledCast';
 
 export default function Cast() {
   const [castMovie, setCastMovie] = useState(null);
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { moviesId } = useParams();
-  console.log(moviesId);
 
   useEffect(() => {
     const fetchActors = async () => {
       try {
-        // setLoading(true);
-        // setError(null);
         const data = await getActors(moviesId);
         setCastMovie(data);
       } catch (error) {
-        // setError(error);
-      } finally {
-        // setLoading(false);
+        setError(error);
       }
     };
     fetchActors();
   }, [moviesId]);
 
-  return <CastList>{castMovie && <ListCast castMovie={castMovie} />}</CastList>;
+  return (
+    <>
+      {error && <p>Something went wrong</p>};
+      <CastList>{castMovie && <ListCast castMovie={castMovie} />}</CastList>;
+    </>
+  );
 }

@@ -11,28 +11,29 @@ import {
 import { getMovieId } from 'Services/API';
 
 import MovieDetailsElement from 'components/MovieDetailsElement/MovieDetailsElement';
+import Loader from 'components/Loader/Loader';
 
 export default function MovieDetails() {
   const [movies, setMovies] = useState(null);
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { moviesId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || '/movies';
-  console.log(from);
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        // setLoading(true);
-        // setError(null);
+        setLoading(true);
+        setError(null);
         const data = await getMovieId(moviesId);
         setMovies(data);
       } catch (error) {
-        // setError(error);
+        setError(error);
       } finally {
-        // setLoading(false);
+        setLoading(false);
       }
     };
     fetchMovie();
@@ -50,22 +51,21 @@ export default function MovieDetails() {
     : `/movies/${moviesId}/reviews`;
   return (
     <>
+      {loading && <Loader />}
+      {error && <p>Something went wrong</p>}
       <Button onClick={goBack}>Go back</Button>
       <Сard>
         {movies && (
           <MovieDetailsElement movies={movies} movieScore={movieScore} />
         )}
-
         <div>
           <h3>Additional information</h3>
-
           <Link className="Link" state={{ from }} to={castLink}>
             Cast
           </Link>
           <Link className="Link" state={{ from }} to={reviewsLink}>
             Reviews
           </Link>
-
           <Outlet></Outlet>
         </div>
       </Сard>
